@@ -13,10 +13,33 @@ const router = express.Router();
 * @access Public (Authentication will be added in Part 2)
 */
 router.get("/", getAllEntries);
+
 /**
 * @route GET /api/diary/:id
 * @desc Fetch a specific diary entry by ID
 * @access Public (Authentication will be added in Part 2)
 */
 router.get("/:id", getEntryById);
+
+/**
+ * @route POST /api/diary
+ * @desc Create a new diary entry
+ * @access Public
+ */
+router.post("/", createEntry);
+
+/**
+ * @route PUT /api/diary/:id
+ * @desc Update an existing diary entry
+ * @access Public
+ */
+router.put("/:id", updateEntry);
+
+/**
+ * @route DELETE /api/diary/:id
+ * @desc Delete an existing diary entry
+ * @access Public
+ */
+router.put("/:id", deleteEntry);
+
 export default router;
