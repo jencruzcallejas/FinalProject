@@ -1,46 +1,18 @@
-// Import the Express module - use modern JavaScript ES6 syntax
 import express from "express";
-// Create an instance of an Express application
+import connectDB from "./config/db.js"; // Import database connection
+import dotenv from "dotenv";
+// Load environment variables
+dotenv.config();
+// Initialize Express App
 const app = express();
-// Define the port number the server will listen on
-const PORT = 3000;
-/**
-* Middleware to parse incoming JSON requests
-* This allows the server to automatically read and parse JSON data
-* from the body of incoming HTTP requests (such as POST requests).
-* Without this, req.body would be undefined when handling JSON payloads.
-*/
+// Connect to MongoDB
+connectDB();
+// Use Express Middleware to parse JSON requests
 app.use(express.json());
-/**
-* Route: GET /
-* Description: Handles requests to the root URL.
-* Response: Sends back a classic "Hello, World!" message.
-*/
+// Default Route
 app.get("/", (req, res) => {
-res.send("Hello, World! Server is up and running.");
+res.send("Welcome to ThoughtStream API");
 });
-/**
-* Route: GET /greeting
-* Description: Handles requests to /greeting
-* Response: Sends back a JSON object with a greeting message.
-*/
-app.get("/greeting", (req, res) => {
-res.json({ message: "Hey there, this is your server responding!" });
-});
-/**
-* Route: POST /messages
-* Description: Handles POST requests to /messages
-* Request Body: JSON data sent by the client
-* Response: - Sends back the same data, wrapped in a JSON object
-*/
-app.post("/messages", (req, res) => {
-// TODO - add code here
-});
-/**
-* Start the server
-* The server listens on the defined PORT and logs a message to
-* the console when running.
-*/
-app.listen(PORT, () => {
-console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Start Server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
