@@ -40,6 +40,6 @@ router.put("/:id", updateEntry);
  * @desc Delete an existing diary entry
  * @access Public
  */
-router.put("/:id", deleteEntry);
+router.delete("/:id", deleteEntry);
 
 export default router;
