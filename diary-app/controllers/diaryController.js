@@ -93,25 +93,24 @@ export const getEntryById = async (req, res) => {
 * - Return the updated entry with a `200 OK` status
 */
 export const updateEntry = async (req, res) => {
-   try {
-        const { user, title, content, reflection, tags, location, weather } = req.body
-        const entry = await DiaryEntry.findById(req.params.id)
-        if (!entry) {
-            return res.status(404).json({ message: "Diary entry not found" });
-        }
-
-        entry.user = user;
-        entry.title = title;
-        entry.content = content;
-        entry.reflection = reflection;
-        entry.tags = tags;
-        entry.location = location;
-        entry.weather = weather;
-        res.status(200).json(entry);
-   } catch (error){
-        res.status(500).json({ message: "Server Error: Unable to update diary entry" });
-   } 
-};
+    try {
+         const { user, title, content, reflection, tags, location, weather } = req.body;
+    
+         const entry = await DiaryEntry.findByIdAndUpdate(
+             req.params.id, {user,title,content,reflection,tags,location,weather},
+             { new: true }  
+         );
+ 
+         if (!entry) {
+             return res.status(404).json({ message: "Diary entry not found" });
+         }
+ 
+         res.status(200).json(entry);
+    } catch (error) {
+         res.status(500).json({ message: "Server Error: Unable to update diary entry", error: error.message });
+    } 
+ };
+ 
 
 /**
 * @route DELETE /api/diary/:id
@@ -130,7 +129,7 @@ export const deleteEntry = async (req, res) => {
         if (!entry) {
             return res.status(404).json({ message: "Diary entry not found" });
         }
-        res.status(200)
+        res.status(200).json({ message: "Diary entry deleted successfully" });
     } catch {
         res.status(500).json({ message: "Server Error: Unable to delete diary entry" });
     }
