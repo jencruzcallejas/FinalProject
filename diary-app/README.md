@@ -134,6 +134,24 @@ NODE_ENVIROMENT: Refers to the developmental mode or production mode.
 
 
 ## Git Commit History:
+commit 199480927a842eb83df15216dc0ed33de3a53f8e
+Author: Jennifer Cruz <jennifer.cruz3@wsu.edu>
+Date:   Wed Apr 2 09:17:05 2025 -0700
+
+    Update README.md to reflect changes from weatherController.js
+
+commit b631c3b66cab565ecce0a7ed42897a6205446af6
+Author: Jennifer Cruz <jennifer.cruz3@wsu.edu>
+Date:   Wed Apr 2 09:16:27 2025 -0700
+
+    Update weatherController.js to fetch weather data from location
+
+commit 6d7b48ef8d8c89362893a243f561a9db1338a2a0
+Author: Jennifer Cruz <jennifer.cruz3@wsu.edu>
+Date:   Tue Apr 1 23:57:58 2025 -0700
+
+    Update README.md with git commit history
+
 commit ebd3654171b3d7256c1d9873612fa5ce101739f5
 Author: Jennifer Cruz <jennifer.cruz3@wsu.edu>
 Date:   Tue Apr 1 01:44:00 2025 -0700
@@ -263,5 +281,4 @@ commit 7381bfb969976494d28de6d14460533b7b8b21dc
 Author: Jennifer Cruz <jennifer.cruz3@wsu.edu>
 Date:   Sat Mar 29 15:46:45 2025 -0700
 
-    Initial commit 
-    
+    Initial commit
