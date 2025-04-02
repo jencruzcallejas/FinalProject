@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import DiaryEntry from "../models/DiaryEntry.js";
-//import { fetchWeather } from "./weatherController.js";
+import { fetchWeather } from "./weatherController.js";
 
 /**
  * @route POST /api/diary
@@ -11,8 +11,8 @@ export const createEntry = async (req, res) => {
     try {
         const { title, content, reflection, tags, location } = req.body;
         // Fetch weather data if location is provided
-        // const weatherData = location ? await fetchWeather(location) : null;
-        const locationData = location ? location : null;
+        const weatherData = location ? await fetchWeather(location) : null;
+        // const locationData = location ? location : null;
         const titleData = title ? title : null;
         const contentData = content ? content : null;
         const userData = req.user?.id || "65a123456789abcd12345678"; // for testing since authentication not finished
@@ -23,7 +23,7 @@ export const createEntry = async (req, res) => {
             reflection,
             tags,
             location,
-            weather: locationData
+            weather: weatherData
         });
         await newEntry.save();
         res.status(201).json(newEntry);
