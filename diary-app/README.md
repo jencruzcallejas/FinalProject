@@ -124,7 +124,7 @@ NODE_ENVIROMENT: Refers to the developmental mode or production mode.
 </p>
 
 <h3>#2 Temporary reassignment of weather data </h3>
-<p>For testing purpose in Part One, the weather variable is set to the location data, instead of using the fetch weather API. This is a temporary issue and is only used for testing purposes.</p>
+<p>For testing purpose in Part One, the weather variable is set to the location data, instead of using the fetch weather API. This is a temporary issue and is only used for testing purposes. After ensuring success, the weather variable was then set to a fetch from the OpenWeather API</p>
 
 
 ## API Testing Results
