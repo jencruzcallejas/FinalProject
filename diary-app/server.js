@@ -15,6 +15,7 @@ import passport from "passport"; // Authentication framework
 import cookieParser from "cookie-parser";
 // Loads Passport strategy and session serialization logic
 import "./config/passport.js";
+import authRoutes from "./routes/authRoutes.js";
 
 // Load environment variables from .env into process.env
 dotenv.config();
@@ -27,6 +28,8 @@ connectDB();
 * Executed in the order it is declared
 */
 
+
+app.use("/auth", authRoutes);
 
 // Parses cookies attached to incoming requests.
 // Required by express-session to read the session ID from the cookie.
