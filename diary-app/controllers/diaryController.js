@@ -40,7 +40,7 @@ export const createEntry = async (req, res) => {
 export const getAllEntries = async (req, res) => {
     try {
         const { search, tag, location } = req.query;
-        let filter = {}; // No authentication in Part 1, so no user filter is applied
+        let filter = { user: req.user._id}; // No authentication in Part 1, so no user filter is applied
         // Search filter (Matches title or content)
         if (search) {
             filter.$or = [
@@ -75,7 +75,10 @@ export const getEntryById = async (req, res) => {
         if (!entry) {
             return res.status(404).json({ message: "Diary entry not found" });
         }
-        res.status(200).json(entry);
+        if (entry.user.toString() !== req.user._id.toString()) {
+            return res.status(403).json({ message: "Forbidden" });
+        }
+        res.status(200).json(entry); 
     } catch (error) {
         res.status(500).json({ message: "Server Error: Unable to retrieve diary entry" });
     }
@@ -94,20 +97,21 @@ export const getEntryById = async (req, res) => {
 */
 export const updateEntry = async (req, res) => {
     try {
-         const { user, title, content, reflection, tags, location, weather } = req.body;
+        const { user, title, content, reflection, tags, location, weather } = req.body;
     
-         const entry = await DiaryEntry.findByIdAndUpdate(
-             req.params.id, {user,title,content,reflection,tags,location,weather},
-             { new: true }  
-         );
- 
-         if (!entry) {
+        const entry = await DiaryEntry.findByIdAndUpdate(
+            req.params.id, {user,title,content,reflection,tags,location,weather},
+            { new: true }  
+        );
+        if (!entry) {
              return res.status(404).json({ message: "Diary entry not found" });
-         }
- 
-         res.status(200).json(entry);
+        }
+        if (entry.user.toString() !== req.user._id.toString()) {
+            return res.status(403).json({ message: "Forbidden" });
+        }
+        res.status(200).json(entry);
     } catch (error) {
-         res.status(500).json({ message: "Server Error: Unable to update diary entry", error: error.message });
+        res.status(500).json({ message: "Server Error: Unable to update diary entry", error: error.message });
     } 
  };
  
