@@ -15,7 +15,7 @@ export const createEntry = async (req, res) => {
         // const locationData = location ? location : null;
         const titleData = title ? title : null;
         const contentData = content ? content : null;
-        const userData = req.user?.id || "65a123456789abcd12345678"; // for testing since authentication not finished
+        const userData = req.user._id; // for testing since authentication not finished
         const newEntry = new DiaryEntry({
             user: userData, // req.user.id authentication is added in Part 2
             title: titleData,
