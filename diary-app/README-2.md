@@ -173,6 +173,8 @@ router.get("/logout", (req, res) => {
 - Open Developer Tools in your browser, then to Application > Cookies > connect.sid
 - Copy the connect.sid value.
 
+<img src="./login-flow.png">
+
 ## **3**: Postman
 - In Postman, go to Cookies. (just under the send button)
 - Add the Cookie Value, Domain: localhost, Name: connect.sid 
