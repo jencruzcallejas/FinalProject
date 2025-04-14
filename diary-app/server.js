@@ -29,8 +29,6 @@ connectDB();
 */
 
 
-app.use("/auth", authRoutes);
-
 // Parses cookies attached to incoming requests.
 // Required by express-session to read the session ID from the cookie.
 app.use(cookieParser());
@@ -66,6 +64,7 @@ app.use(passport.session());
 app.use(express.json()); // Parses JSON request bodies
 app.use(cors()); // Allows cross-origin requests (for frontend interaction)
 // Define API routes
+app.use("/auth", authRoutes);
 // All requests to /api/diary are forwarded to diaryRoutes.js
 app.use("/api/diary", diaryRoutes); // Mount routes under /api/diary
 // Default route to check if the server is running
